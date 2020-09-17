@@ -4,7 +4,15 @@ void main() => runApp(MaterialApp(
   home: CardApp(),
 ));
 
-class CardApp extends StatelessWidget {
+class CardApp extends StatefulWidget {
+  @override
+  _CardAppState createState() => _CardAppState();
+}
+
+class _CardAppState extends State<CardApp> {
+
+  int codeLevel = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +67,7 @@ class CardApp extends StatelessWidget {
           height: 10.0,
         ),
             Text(
-              'Hobby',
+              'Codding Level',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20.0,
@@ -68,14 +76,30 @@ class CardApp extends StatelessWidget {
             SizedBox(
               height: 5.0,
             ),
-            Text(
-              'Codding',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 40.0,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Flower',
-              ),
+            Row(
+              children: <Widget>[
+                Text(
+                  '$codeLevel',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Flower',
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(50.0, 0.0, 0.0, 0.0),
+                  child: RaisedButton(
+                    child: Text('Click to add'),
+                    color: Colors.redAccent,
+                    onPressed: () {
+                      setState(() {
+                        codeLevel += 1;
+                      });
+                    },
+                  ),
+                ),
+              ],
             ),
             SizedBox(
               height: 10.0,
